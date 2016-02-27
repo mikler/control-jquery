@@ -59,6 +59,8 @@ if (nestToken) { // Simple check for token
   @param object thermostat model
   @returns undefined
 */
+var wasHeating = false;
+
 function updateTemperatureDisplay (thermostat) {
   var scale = thermostat.temperature_scale.toLowerCase();
 
@@ -69,8 +71,21 @@ function updateTemperatureDisplay (thermostat) {
       thermostat['target_temperature_low_' + scale] + ' • ' +
       thermostat['target_temperature_high_' + scale]
      );
-
+  
   // Display the string 'off' when the thermostat is turned off
+  } else if(thermostat.hvac_mode === 'heat'){
+    if (thermostat.hvac_state === 'heating'){
+    if (!wasHeating){
+         $('#talog').val($('#talog').val()+ new Date().toLocaleString()+'\t started heating\n'); 
+    }
+    wasHeating = true;
+  } else {
+    if (wasHeating){
+         $('#talog').val($('#talog').val()+ new Date().toLocaleString()+'\t stopped heating\n'); 
+    }
+    wasHeating = false;
+  }
+
   } else if (thermostat.hvac_mode === 'off') {
     $('#target-temperature .temp').text('off');
 

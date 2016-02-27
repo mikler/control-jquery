@@ -31,6 +31,24 @@ body {
   color: #6c6c6c;
 }
 
+#log {
+  margin-top: 450px;
+  margin-left: -250px;
+  left: 50%;
+  position: absolute;
+  height: 800px;
+  width: 500px;
+  border-radius: 10px;
+  border-style: outset;
+  border-width: 3px;
+  font-family: Helvetica, sans-serif;
+}
+
+#talog {
+  height: 800px;
+  width: 500px;
+}
+
 button {
   position: absolute;
   right: 40px;
